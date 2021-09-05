@@ -3,8 +3,7 @@ async function createDynamicMegamenu() {
 		let menuContentCategories = [];
 
 		const categoriesBody = await requestCategoriesMegamenu(); // REQUEST BODY CATEGOPRIES FOR API
-		const subCategoriesBody = await requestSubCategoriesMegamenu(); //REQUEST BODY SUBCATEGORIES FOR API
-		
+
 		categoriesBody.forEach((categoriesBody) => {
 			let item = new Object();
 			item.category = categoriesBody.name;
@@ -12,6 +11,7 @@ async function createDynamicMegamenu() {
 				? categoriesBody.image_background.guid
 				: "https://devscripta.com.br/wp-content/uploads/2021/08/service-card-placeholder.jpg";
 			//set DEFAULT IMAGE
+			item.slug = categoriesBody.slug;
 			menuContentCategories.push(item);
 		});
 
@@ -40,7 +40,10 @@ async function createDynamicMegamenu() {
 			listCategory.appendChild(categoryLink);
 
 			let categoryBackgroundWrapper = document.createElement("div");
-			categoryBackgroundWrapper.setAttribute("id", `${(menuContentCategories.category).replace(/ /g, '-')}`);
+			categoryBackgroundWrapper.setAttribute(
+				"id",
+				`${menuContentCategories.category.replace(/ /g, "-")}`
+			);
 			categoryBackgroundWrapper.classList.add("image-wrapper");
 			let categoryBackgroundImage = document.createElement("img");
 			categoryBackgroundImage.setAttribute(
@@ -51,9 +54,20 @@ async function createDynamicMegamenu() {
 			categoryBackgroundWrapper.appendChild(categoryBackgroundImage);
 			navMegamenuBg.appendChild(categoryBackgroundWrapper);
 		});
-
+		let menuContentSubCategories = [];
 		//CONSTRUCTOR SUBCATEGORIES MENU ->
-		
+		menuContentCategories.forEach(async (menuContentCategories, index) => {
+			let item = new Object();
+			item.category = menuContentCategories.category;
+			item.slug = menuContentCategories.slug;
+			let subCategoriesBody = await requestSubCategoriesMegamenu(menuContentCategories.slug); //REQUEST BODY SUBCATEGORIES FOR API
+			item.subItems = subCategoriesBody[index] ? subCategoriesBody[index]._subcategory_data : 0;
+			item.imageBackground = subCategoriesBody[index] ? subCategoriesBody[index].imagem_de_destaque.guid : 0;
+
+			menuContentSubCategories.push(item);
+		});
+
+		console.log(menuContentSubCategories)
 	} catch (e) {
 		console.error(`DEU ERRO -> ${e}`);
 		//handler for error
