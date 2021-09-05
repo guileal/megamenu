@@ -22,15 +22,25 @@ function controllMegamenuUI() {
 
 	//CONTROL BACKGROUND
 	//CHANGED FUNCTIONS ->
-	const defaultBackgroundImage = document.querySelector("#default");
-	const imagesBackground = document.querySelectorAll(".image-wrapper");
+
 	const megamenuNav = document.querySelector(".megamenu-nav");
 
 	const menuItems = megamenuNav.querySelectorAll("li");
 
 	menuItems.forEach((menuItems) => {
-		menuItems.onmouseover = menuItems.onmouseout = hoverListItems;
+		hoverElement(menuItems)
 	});
+
+	//DEFAULT CONTROL ->
+	setDefaultBackground();
+}
+
+function hoverElement(element){
+	const defaultBackgroundImage = document.querySelector("#default");
+	const imagesBackground = document.querySelectorAll(".image-wrapper");
+	const megamenuNav = document.querySelector(".megamenu-nav");
+	
+	element.onmouseover = element.onmouseout = hoverListItems;
 
 	function hoverListItems(event) {
 		//handler function hover
@@ -83,13 +93,13 @@ function controllMegamenuUI() {
 			}
 		}
 	}
-	function setDefaultBackground() {
-		imagesBackground.forEach((imagesBackground) => {
-			imagesBackground.style.opacity = "0";
-		});
-		defaultBackgroundImage.style.opacity = "1";
-	}
+}
 
-	//DEFAULT CONTROL ->
-	setDefaultBackground();
+function setDefaultBackground() {
+	const imagesBackground = document.querySelectorAll(".image-wrapper");
+	const defaultBackgroundImage = document.querySelector("#default");
+	imagesBackground.forEach((imagesBackground) => {
+		imagesBackground.style.opacity = "0";
+	});
+	defaultBackgroundImage.style.opacity = "1";
 }
