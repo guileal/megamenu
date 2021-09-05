@@ -266,6 +266,7 @@ header {
 	/* border: solid 10px red; */
 	overflow: hidden !important;
 	pointer-events: none;
+	transition: all .3s ease-in-out;
 }
 
 .background-image .image-wrapper::after {

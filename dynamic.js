@@ -39,7 +39,7 @@ async function createDynamicMegamenu() {
 			listCategory.appendChild(categoryLink);
 
 			let categoryBackgroundWrapper = document.createElement("div");
-			categoryBackgroundWrapper.setAttribute("id", `${index + 1}`);
+			categoryBackgroundWrapper.setAttribute("id", `${(menuContentCategories.category).replace(/ /g, '-')}`);
 			categoryBackgroundWrapper.classList.add("image-wrapper");
 			let categoryBackgroundImage = document.createElement("img");
 			categoryBackgroundImage.setAttribute(
