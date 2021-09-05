@@ -4,13 +4,15 @@ async function createDynamicMegamenu() {
 
 		const categoriesBody = await requestCategoriesMegamenu(); // REQUEST BODY FOR API
 
-		categoriesBody.forEach(categoriesBody =>{
+		categoriesBody.forEach((categoriesBody) => {
 			let item = new Object();
-			item.category = categoriesBody.name
-			item.imageBackground = categoriesBody.image_background ? categoriesBody.image_background.guid : 'https://devscripta.com.br/wp-content/uploads/2021/08/service-card-placeholder.jpg'; 
+			item.category = categoriesBody.name;
+			item.imageBackground = categoriesBody.image_background
+				? categoriesBody.image_background.guid
+				: "https://devscripta.com.br/wp-content/uploads/2021/08/service-card-placeholder.jpg";
 			//set DEFAULT IMAGE
-			menuContentCategories.push(item)
-		})
+			menuContentCategories.push(item);
+		});
 
 		const navMegamenu = document.querySelector(".megamenu-nav");
 		const navMegamenuBg = document.querySelector(".background-image");
@@ -20,7 +22,9 @@ async function createDynamicMegamenu() {
 
 		menuContentCategories.forEach((menuContentCategories, index) => {
 			console.log(`category ${index}: ${menuContentCategories.category}`);
-			console.log(`background ${index}: ${menuContentCategories.imageBackground}`);
+			console.log(
+				`background ${index}: ${menuContentCategories.imageBackground}`
+			);
 			let listCategory = document.createElement("li");
 			listWrapper.appendChild(listCategory);
 
@@ -35,6 +39,7 @@ async function createDynamicMegamenu() {
 			listCategory.appendChild(categoryLink);
 
 			let categoryBackgroundWrapper = document.createElement("div");
+			categoryBackgroundWrapper.setAttribute("id", `${index + 1}`);
 			categoryBackgroundWrapper.classList.add("image-wrapper");
 			let categoryBackgroundImage = document.createElement("img");
 			categoryBackgroundImage.setAttribute(
