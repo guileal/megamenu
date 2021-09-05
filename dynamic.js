@@ -60,14 +60,19 @@ async function createDynamicMegamenu() {
 			let item = new Object();
 			item.category = menuContentCategories.category;
 			item.slug = menuContentCategories.slug;
-			let subCategoriesBody = await requestSubCategoriesMegamenu(menuContentCategories.slug); //REQUEST BODY SUBCATEGORIES FOR API
-			item.subItems = subCategoriesBody[index] ? subCategoriesBody[index]._subcategory_data : 0;
-			item.imageBackground = subCategoriesBody[index] ? subCategoriesBody[index].imagem_de_destaque.guid : 0;
+			let subCategoriesBody = await requestSubCategoriesMegamenu(
+				menuContentCategories.slug
+			); //REQUEST BODY SUBCATEGORIES FOR API
+			item.subItems = subCategoriesBody[index]
+				? subCategoriesBody[index]._subcategory_data
+				: 0;
+			item.imageBackground = subCategoriesBody[index]
+				? subCategoriesBody[index].imagem_de_destaque.guid
+				: 0;
 
 			menuContentSubCategories.push(item);
 		});
-
-		console.log(menuContentSubCategories)
+		//create object for subcategories menu in -> menuContentSubCategories
 	} catch (e) {
 		console.error(`DEU ERRO -> ${e}`);
 		//handler for error
