@@ -3,6 +3,12 @@ window.onload = () => {
 };
 
 async function asyncExecute() {
-	await createDynamicMegamenu();
-	controllMegamenuUI();
+	try{
+		await requestCategoriesMegamenu();
+		createDynamicMegamenu();
+	}catch(e){
+		console.error(e)
+	}finally{
+		controllMegamenuUI();
+	}
 }
