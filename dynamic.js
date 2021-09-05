@@ -2,8 +2,9 @@ async function createDynamicMegamenu() {
 	try {
 		let menuContentCategories = [];
 
-		const categoriesBody = await requestCategoriesMegamenu(); // REQUEST BODY FOR API
-
+		const categoriesBody = await requestCategoriesMegamenu(); // REQUEST BODY CATEGOPRIES FOR API
+		const subCategoriesBody = await requestSubCategoriesMegamenu(); //REQUEST BODY SUBCATEGORIES FOR API
+		
 		categoriesBody.forEach((categoriesBody) => {
 			let item = new Object();
 			item.category = categoriesBody.name;
@@ -50,6 +51,9 @@ async function createDynamicMegamenu() {
 			categoryBackgroundWrapper.appendChild(categoryBackgroundImage);
 			navMegamenuBg.appendChild(categoryBackgroundWrapper);
 		});
+
+		//CONSTRUCTOR SUBCATEGORIES MENU ->
+		
 	} catch (e) {
 		console.error(`DEU ERRO -> ${e}`);
 		//handler for error
