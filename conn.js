@@ -13,3 +13,5 @@ async function requestCategoriesMegamenu() {
 	const body = await response.json();
 	return body;
 }
+
+

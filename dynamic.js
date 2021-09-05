@@ -1,54 +1,52 @@
-function createDynamicMegamenu() {
-	let menuContent = [];
+async function createDynamicMegamenu() {
+	try {
+		let menuContentCategories = [];
 
-	let category = ["tratamentos clínicos", "tratamentos estéticos"];
-	let imageBackground = [
-		"/assets/megamenu (1).png",
-		"/assets/megamenu (2).png",
-	];
-	// populandoa array de teste
-	for (var i = 0; i < 2; i++) {
-		let item = new Object();
+		const categoriesBody = await requestCategoriesMegamenu(); // REQUEST BODY FOR API
 
-		item.category = category[i];
-		item.imageBackground = imageBackground[i];
+		categoriesBody.forEach(categoriesBody =>{
+			let item = new Object();
+			item.category = categoriesBody.name
+			item.imageBackground = categoriesBody.image_background ? categoriesBody.image_background.guid : 'https://devscripta.com.br/wp-content/uploads/2021/08/service-card-placeholder.jpg'; 
+			//set DEFAULT IMAGE
+			menuContentCategories.push(item)
+		})
 
-		menuContent.push(item);
+		const navMegamenu = document.querySelector(".megamenu-nav");
+		const navMegamenuBg = document.querySelector(".background-image");
+
+		const listWrapper = document.createElement("ul");
+		navMegamenu.appendChild(listWrapper);
+
+		menuContentCategories.forEach((menuContentCategories, index) => {
+			console.log(`category ${index}: ${menuContentCategories.category}`);
+			console.log(`background ${index}: ${menuContentCategories.imageBackground}`);
+			let listCategory = document.createElement("li");
+			listWrapper.appendChild(listCategory);
+
+			let categoryNavIcon = document.createElement("img");
+			listCategory.appendChild(categoryNavIcon);
+			categoryNavIcon.setAttribute("src", "/assets/nav-icon.svg");
+			categoryNavIcon.setAttribute("loading", "lazy");
+
+			let categoryLink = document.createElement("a");
+			categoryLink.setAttribute("href", "#");
+			categoryLink.innerHTML = menuContentCategories.category;
+			listCategory.appendChild(categoryLink);
+
+			let categoryBackgroundWrapper = document.createElement("div");
+			categoryBackgroundWrapper.classList.add("image-wrapper");
+			let categoryBackgroundImage = document.createElement("img");
+			categoryBackgroundImage.setAttribute(
+				"src",
+				menuContentCategories.imageBackground
+			);
+			categoryBackgroundImage.setAttribute("loading", "lazy");
+			categoryBackgroundWrapper.appendChild(categoryBackgroundImage);
+			navMegamenuBg.appendChild(categoryBackgroundWrapper);
+		});
+	} catch (e) {
+		console.error(`DEU ERRO -> ${e}`);
+		//handler for error
 	}
-
-	console.log(`array: ${menuContent}`);
-
-	const navMegamenu = document.querySelector(".megamenu-nav");
-	const navMegamenuBg = document.querySelector(".background-image");
-
-	const listWrapper = document.createElement("ul");
-	navMegamenu.appendChild(listWrapper);
-
-	menuContent.forEach((menuContent, index) => {
-		console.log(`category ${index}: ${menuContent.category}`);
-		console.log(`background ${index}: ${menuContent.imageBackground}`);
-		let listCategory = document.createElement("li");
-		listWrapper.appendChild(listCategory);
-
-		let categoryNavIcon = document.createElement("img");
-		listCategory.appendChild(categoryNavIcon);
-		categoryNavIcon.setAttribute("src", "/assets/nav-icon.svg");
-		categoryNavIcon.setAttribute("loading", "lazy");
-
-		let categoryLink = document.createElement("a");
-		categoryLink.setAttribute("href", "#");
-		categoryLink.innerHTML = menuContent.category;
-		listCategory.appendChild(categoryLink);
-
-		let categoryBackgroundWrapper = document.createElement("div");
-		categoryBackgroundWrapper.classList.add("image-wrapper");
-		let categoryBackgroundImage = document.createElement("img");
-		categoryBackgroundImage.setAttribute(
-			"src",
-			menuContent.imageBackground
-		);
-		categoryBackgroundImage.setAttribute("loading", "lazy");
-		categoryBackgroundWrapper.appendChild(categoryBackgroundImage);
-		navMegamenuBg.appendChild(categoryBackgroundWrapper);
-	});
 }
