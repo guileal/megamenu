@@ -1,4 +1,3 @@
-createDynamicMegamenu();
 function createDynamicMegamenu() {
   let menuContent = [];
 
