@@ -52,7 +52,7 @@ function hoverElement(element) {
 function changeBackgroundHover(nodeItem) {
     const imagesBackground = document.querySelectorAll(".image-wrapper");
     const currentHover = nodeItem;
-    console.log(`ELEMENTO -> ${currentHover}`);
+    // console.log(`ELEMENTO -> ${currentHover}`);
     if (currentHover.tagName != "IMG") {
         if (currentHover.parentNode.nodeName != "LI") {
             const changedImage = document.querySelector(

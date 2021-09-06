@@ -55,20 +55,30 @@ body {
 	max-height: 100%;
 }
 
+/* header */
 header {
 	width: 100vw;
-	height: 100px;
+	height: 210px;
+    padding-top: 40px;
 	max-width: 100%;
 	max-height: 100%;
 	background-color: #3f3f3f;
 
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-start;
 	z-index: 2;
+
 }
-.logo {
+
+.logo{
+    z-index: 4;
+    padding: 4rem;
+}
+.logo img{
 	z-index: 4;
+    width: 350px;
+
 }
 .main-nav ul li {
 	display: inline-flex;
@@ -88,6 +98,7 @@ header {
 	fill: #fff !important;
 }
 
+/* megamenu */
 #megamenu-wrapper {
 	opacity: 0;
 	pointer-events: none;
@@ -107,14 +118,14 @@ header {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	justify-content: center;
+	justify-content: flex-start;
 
 	width: 100vw;
 	height: 100vh;
 	max-width: 100%;
 	max-height: 100%;
 
-	padding: 5rem;
+	padding: 20rem 4rem 4rem 4rem;
 
 	font-size: 7.5rem;
 	z-index: 2;
@@ -155,22 +166,67 @@ header {
 	transform: rotate(180deg) translateX(10px);
 }
 .megamenu-nav ul {
-	list-style-type: none;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.megamenu-nav li {
-	display: flex;
-	align-items: center;
-
+.megamenu-nav ul li{
+    /* display: flex;
+    flex-direction: row; */
 	font-family: Graphit;
 	font-weight: 700;
 
 	transition: transform 300ms ease;
 	transform-origin: left;
 }
-.megamenu-nav li:hover {
+
+.megamenu-nav > ul > li:hover {
 	transition: all 200ms ease;
 	transform: scale(1.2);
 }
+
+.megamenu-nav ul li .submenu{
+    display: flex;
+    align-items: flex-start;
+    /* height: 0; */
+    /* opacity: 0; */
+    transition: all .3s ease;
+
+}
+
+.megamenu-nav ul li .submenu .title-item{
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #515151;
+}
+
+.megamenu-nav ul li .submenu ul{
+    display: flex;
+    width: auto;
+}
+.megamenu-nav ul li .submenu ul:not(:first-child){
+    margin-left: 40px;
+}
+.megamenu-nav ul li .submenu ul li{
+    font-family: Open Sans;
+    font-size: 1.6rem;
+    line-height: 3.75rem;
+    color: #515151;
+    transition: color .2s ease;
+}
+
+.megamenu-nav ul li .submenu ul li:hover{
+    color: #333333;
+    transition: color .2s ease;
+}
+
+
+
+
 .megamenu-nav a {
 	text-decoration: none;
 	line-height: 10rem;
@@ -266,7 +322,7 @@ header {
 	/* border: solid 10px red; */
 	overflow: hidden !important;
 	pointer-events: none;
-	transition: all .3s ease-in-out;
+	transition: opacity .3s ease-in-out;
 }
 
 .background-image .image-wrapper::after {
