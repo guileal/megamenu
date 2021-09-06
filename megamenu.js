@@ -58,7 +58,6 @@ function changeBackgroundHover(nodeItem) {
             const changedImage = document.querySelector(
                 `#${currentHover.querySelector("a").text.replace(/ /g, "-")}`
             );
-            console.log(`LI -> ${changedImage.getAttribute("id")}`);
             imagesBackground.forEach((imagesBackground) => {
                 if (
                     imagesBackground.getAttribute("id") !=
@@ -73,7 +72,6 @@ function changeBackgroundHover(nodeItem) {
             const changedImage = document.querySelector(
                 `#${currentHover.text.replace(/ /g, "-")}`
             );
-            console.log(`A -> ${changedImage.getAttribute("id")}`);
             imagesBackground.forEach((imagesBackground) => {
                 if (
                     imagesBackground.getAttribute("id") !=
