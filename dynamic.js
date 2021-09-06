@@ -1,80 +1,102 @@
 async function createDynamicMegamenu() {
-	try {
-		let menuContentCategories = [];
+    try {
+        let menuContentCategories = [];
 
-		const categoriesBody = await requestCategoriesMegamenu(); // REQUEST BODY CATEGOPRIES FOR API
+        const categoriesBody = await requestCategoriesMegamenu(); // REQUEST BODY CATEGOPRIES FOR API
 
-		categoriesBody.forEach((categoriesBody) => {
-			let item = new Object();
-			item.category = categoriesBody.name;
-			item.imageBackground = categoriesBody.image_background
-				? categoriesBody.image_background.guid
-				: "https://devscripta.com.br/wp-content/uploads/2021/08/service-card-placeholder.jpg";
-			//set DEFAULT IMAGE
-			item.slug = categoriesBody.slug;
-			menuContentCategories.push(item);
-		});
+        categoriesBody.forEach((categoriesBody) => {
+            let item = new Object();
+            item.category = categoriesBody.name;
+            item.imageBackground = categoriesBody.image_background
+                ? categoriesBody.image_background.guid
+                : "https://devscripta.com.br/wp-content/uploads/2021/08/service-card-placeholder.jpg";
+            //set DEFAULT IMAGE
+            item.slug = categoriesBody.slug;
+            menuContentCategories.push(item);
+        });
 
-		const navMegamenu = document.querySelector(".megamenu-nav");
-		const navMegamenuBg = document.querySelector(".background-image");
+        const navMegamenu = document.querySelector(".megamenu-nav");
+        const navMegamenuBg = document.querySelector(".background-image");
 
-		const listWrapper = document.createElement("ul");
-		navMegamenu.appendChild(listWrapper);
+        const listWrapper = document.createElement("ul");
+        navMegamenu.appendChild(listWrapper);
 
-		menuContentCategories.forEach((menuContentCategories, index) => {
-			console.log(`category ${index}: ${menuContentCategories.category}`);
-			console.log(
-				`background ${index}: ${menuContentCategories.imageBackground}`
-			);
-			let listCategory = document.createElement("li");
-			listWrapper.appendChild(listCategory);
+        menuContentCategories.forEach((menuContentCategories, index) => {
+            let listCategory = document.createElement("li");
+            listWrapper.appendChild(listCategory);
 
-			let categoryNavIcon = document.createElement("img");
-			listCategory.appendChild(categoryNavIcon);
-			categoryNavIcon.setAttribute("src", "/assets/nav-icon.svg");
-			categoryNavIcon.setAttribute("loading", "lazy");
+            let categoryNavIcon = document.createElement("img");
+            listCategory.appendChild(categoryNavIcon);
+            categoryNavIcon.setAttribute("src", "https://devscripta.com.br/wp-content/uploads/2021/09/nav-icon.svg");
+            categoryNavIcon.setAttribute("loading", "lazy");
 
-			let categoryLink = document.createElement("a");
-			categoryLink.setAttribute("href", "#");
-			categoryLink.innerHTML = menuContentCategories.category;
-			listCategory.appendChild(categoryLink);
+            let categoryLink = document.createElement("a");
+            categoryLink.setAttribute("href", "#");
+            categoryLink.innerHTML = menuContentCategories.category;
+            listCategory.appendChild(categoryLink);
 
-			let categoryBackgroundWrapper = document.createElement("div");
-			categoryBackgroundWrapper.setAttribute(
-				"id",
-				`${menuContentCategories.category.replace(/ /g, "-")}`
-			);
-			categoryBackgroundWrapper.classList.add("image-wrapper");
-			let categoryBackgroundImage = document.createElement("img");
-			categoryBackgroundImage.setAttribute(
-				"src",
-				menuContentCategories.imageBackground
-			);
-			categoryBackgroundImage.setAttribute("loading", "lazy");
-			categoryBackgroundWrapper.appendChild(categoryBackgroundImage);
-			navMegamenuBg.appendChild(categoryBackgroundWrapper);
-		});
-		let menuContentSubCategories = [];
-		//CONSTRUCTOR SUBCATEGORIES MENU ->
-		menuContentCategories.forEach(async (menuContentCategories, index) => {
-			let item = new Object();
-			item.category = menuContentCategories.category;
-			item.slug = menuContentCategories.slug;
-			let subCategoriesBody = await requestSubCategoriesMegamenu(
-				menuContentCategories.slug
-			); //REQUEST BODY SUBCATEGORIES FOR API
-			item.subItems = subCategoriesBody[index]
-				? subCategoriesBody[index]._subcategory_data
-				: 0;
-			item.imageBackground = subCategoriesBody[index]
-				? subCategoriesBody[index].imagem_de_destaque.guid
-				: 0;
+            let categoryBackgroundWrapper = document.createElement("div");
+            categoryBackgroundWrapper.setAttribute(
+                "id",
+                `${menuContentCategories.category.replace(/ /g, "-")}`
+            );
+            categoryBackgroundWrapper.classList.add("image-wrapper");
+            let categoryBackgroundImage = document.createElement("img");
+            categoryBackgroundImage.setAttribute(
+                "src",
+                menuContentCategories.imageBackground
+            );
+            categoryBackgroundImage.setAttribute("loading", "lazy");
+            categoryBackgroundWrapper.appendChild(categoryBackgroundImage);
+            navMegamenuBg.appendChild(categoryBackgroundWrapper);
+        });
+        let menuContentSubCategories = [];
+        //CONSTRUCTOR SUBCATEGORIES MENU ->
+        menuContentCategories.forEach(async (menuContentCategories, index) => {
+            let item = new Object();
+            item.category = menuContentCategories.category;
+            item.slug = menuContentCategories.slug;
+            let subCategoriesBody = await requestSubCategoriesMegamenu(
+                menuContentCategories.slug
+            ); //REQUEST BODY SUBCATEGORIES FOR API
+            item.subItems = subCategoriesBody[index]
+                ? subCategoriesBody[index]._subcategory_data
+                : 0;
+            item.imageBackground = subCategoriesBody[index]
+                ? subCategoriesBody[index].imagem_de_destaque.guid
+                : 0;
 
-			menuContentSubCategories.push(item);
-		});
-		//create object for subcategories menu in -> menuContentSubCategories
-	} catch (e) {
-		console.error(`DEU ERRO -> ${e}`);
-		//handler for error
-	}
+            menuContentSubCategories.push(item);
+        });
+        //create object for subcategories menu in -> menuContentSubCategories
+    } catch (e) {
+        console.error(`DEU ERRO -> ${e}`);
+        //handler for error
+        const mainMenu = document.getElementsByClassName("main-nav")[0];
+        const itemsStatic = mainMenu.querySelectorAll("li");
+
+        const anchorMenu = document.querySelector(".megamenu-nav");
+        const wrapper = document.createElement("ul");
+
+        itemsStatic.forEach((itemsStatic) => {
+            let item = itemsStatic;
+            let listItem = document.createElement("li");
+            wrapper.appendChild(listItem);
+
+            let navImage = document.createElement("img");
+            navImage.setAttribute("src", "https://devscripta.com.br/wp-content/uploads/2021/09/nav-icon.svg");
+            navImage.setAttribute("loading", "lazy");
+            listItem.appendChild(navImage);
+
+            let navLink = document.createElement("a");
+            navLink.setAttribute(
+                "href",
+                `/${item.innerText.replace(/ /g, "-")}`
+            );
+            navLink.innerHTML = item.innerText;
+            listItem.appendChild(navLink);
+        });
+
+        anchorMenu.appendChild(wrapper);
+    }
 }
