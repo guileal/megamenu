@@ -130,6 +130,7 @@ header {
 	font-size: 7.5rem;
 	z-index: 2;
 }
+
 .megamenu .back-button {
 	display: flex;
 	justify-content: center;
@@ -150,6 +151,7 @@ header {
 
 	transition: all 200ms ease;
 }
+
 .megamenu .back-button:hover {
 	transition: all 200ms ease;
 	color: #d088b1;
@@ -181,18 +183,25 @@ header {
 	transform-origin: left;
 }
 
+.disable{
+	height: 0 !important;
+	opacity: 0 !important;
+}
 .megamenu-nav > ul > li:hover {
 	transition: all 200ms ease;
 	transform: scale(1.2);
 }
-
 .megamenu-nav ul li .submenu{
     display: flex;
     align-items: flex-start;
-    /* height: 0; */
-    /* opacity: 0; */
+    height: 0;
+    opacity: 0;
     transition: all .3s ease;
+}
 
+.submenu-active{
+	height: 500px !important;
+	opacity: 1 !important;
 }
 
 .megamenu-nav ul li .submenu .title-item{
@@ -223,9 +232,6 @@ header {
     color: #333333;
     transition: color .2s ease;
 }
-
-
-
 
 .megamenu-nav a {
 	text-decoration: none;

@@ -23,13 +23,67 @@ function controllMegamenuUI() {
     //CONTROL BACKGROUND
     //CHANGED FUNCTIONS ->
 
-    const megamenuNav = document.querySelector(".megamenu-nav");
 
-    const menuItems = megamenuNav.querySelectorAll("li");
+    const categories = document.getElementById('categories')
+    const liItems = categories.querySelectorAll('.categoryItem')
 
-    menuItems.forEach((menuItems) => {
-        hoverElement(menuItems);
-    });
+    categories.addEventListener('click', function(event){
+        // // event.stopPropagation;
+        let clickedItem = event.target
+        let submenuToActive = clickedItem.parentNode.querySelector('.submenu')
+        
+        if(submenuToActive){
+            if(submenuToActive.classList.contains('submenu-active')){
+                submenuToActive.classList.remove('submenu-active')  
+                liItems.forEach(liItems =>{
+                    liItems.classList.remove('disable')
+                })      
+            }else{
+                submenuToActive.classList.add('submenu-active')
+                liItems.forEach(liItems =>{
+                    let testSubmenu = liItems.querySelector('.submenu')
+                    if(testSubmenu){
+                        if(testSubmenu.classList.contains('submenu-active')){
+                        }else{
+                            liItems.classList.add('disable')            
+                        }
+                    }else{
+                        liItems.classList.add('disable')  
+                    }
+                })
+            }
+        }else{
+            // fallback
+        }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //DEFAULT CONTROL ->
     setDefaultBackground();
