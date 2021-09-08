@@ -14,9 +14,9 @@ async function requestCategoriesMegamenu() {
 	return body;
 }
 
-async function requestSubCategoriesMegamenu(taxonomy) {
+async function requestSubCategoriesMegamenu(idTaxonomy) {
 	const response = await fetch(
-		`https://devscripta.com.br/wp-json/wp/v2/mega-menu?${taxonomy}`,
+		`https://devscripta.com.br/wp-json/wp/v2/mega-menu?category-mega-menu=${idTaxonomy}`,
 		{
 			mode: "cors",
 			method: "GET",
