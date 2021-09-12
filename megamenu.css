@@ -186,6 +186,7 @@ header {
 .disable{
 	height: 0 !important;
 	opacity: 0 !important;
+	pointer-events: none !important;
 }
 .megamenu-nav > ul > li:hover {
 	transition: all 200ms ease;
