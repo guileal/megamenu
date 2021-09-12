@@ -123,7 +123,7 @@ header {
 	width: 100vw;
 	height: 100vh;
 	max-width: 100%;
-	max-height: 100%;
+	max-height: 100vh;
 
 	padding: 20rem 4rem 4rem 4rem;
 
@@ -194,12 +194,19 @@ header {
 .megamenu-nav ul li .submenu{
     display: flex;
     align-items: flex-start;
+	width: 0;
     height: 0;
     opacity: 0;
     transition: all .3s ease;
 }
 
+.submenu *{
+	pointer-events: none;
+}
+
 .submenu-active{
+	width: 0;
+	max-width: 100vw;
 	height: 500px !important;
 	opacity: 1 !important;
 }
@@ -220,7 +227,7 @@ header {
 .megamenu-nav ul li .submenu ul:not(:first-child){
     margin-left: 40px;
 }
-.megamenu-nav ul li .submenu ul li{
+.megamenu-nav ul li .submenu ul li a{
     font-family: Open Sans;
     font-size: 1.6rem;
     line-height: 3.75rem;
@@ -228,7 +235,7 @@ header {
     transition: color .2s ease;
 }
 
-.megamenu-nav ul li .submenu ul li:hover{
+.megamenu-nav ul li .submenu ul li a:hover{
     color: #333333;
     transition: color .2s ease;
 }

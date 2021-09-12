@@ -23,17 +23,12 @@ function controllMegamenuUI() {
     //CONTROL BACKGROUND
     //CHANGED FUNCTIONS ->
 
-    const megamenuNav = document.querySelector(".megamenu-nav");
 
-    const menuItems = megamenuNav.querySelectorAll("li");
-
-    menuItems.forEach((menuItems) => {
-        hoverElement(menuItems);
-    });
-
-
+    // VARIABLES
     const categories = document.getElementById('categories')
     const liItems = categories.querySelectorAll('.categoryItem')
+
+    // OPEN SUBMENU
 
     categories.addEventListener('click', function(event){
         // // event.stopPropagation;
