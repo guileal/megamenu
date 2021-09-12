@@ -21,11 +21,12 @@ async function createDynamicMegamenu() {
         const navMegamenuBg = document.querySelector(".background-image");
 
         const listWrapper = document.createElement("ul");
+        listWrapper.className = "categories";
         listWrapper.setAttribute("id", "categories");
 
         navMegamenu.appendChild(listWrapper);
 
-        menuContentCategories.forEach(async (menuContentCategories, index) => {
+        menuContentCategories.reverse().forEach(async (menuContentCategories, index) => {
             let listCategory = document.createElement("li");
             listCategory.className = "categoryItem";
             listCategory.setAttribute(
@@ -69,7 +70,7 @@ async function createDynamicMegamenu() {
             if (subCategoryRequest.length > 0) {
                 let subMenu = document.createElement("div");
                 subMenu.className = "submenu";
-                subCategoryRequest.forEach((subCategoryRequest) => {
+                subCategoryRequest.reverse().forEach((subCategoryRequest) => {
                     let subMenuWrappList = document.createElement("ul");
                     subMenu.appendChild(subMenuWrappList);
                     let titleSubMenu = document.createElement("div");
@@ -84,11 +85,11 @@ async function createDynamicMegamenu() {
                     imageTitle.setAttribute("loading", "lazy");
                     titleSubMenu.appendChild(imageTitle);
                     let subItems = subCategoryRequest._subcategory_data;
-                    subItems.forEach((subItems) => {
+                    subItems.reverse().forEach((subItems) => {
                         let valueLI = document.createElement("li");
                         let valueLink = document.createElement("a");
                         valueLink.setAttribute("href", subItems.link_value);
-                        valueLink.innerHTML = subItems.item_value;
+                        valueLink.innerHTML = subItems.item_value.replace(/\u2028/g, ' ') ;
                         valueLI.appendChild(valueLink);
                         subMenuWrappList.appendChild(valueLI);
                     });

@@ -40,15 +40,19 @@ function controllMegamenuUI() {
         // // event.stopPropagation;
         let clickedItem = event.target;
         let submenuToActive = clickedItem.parentNode.querySelector(".submenu");
+        let liParent = submenuToActive.parentNode;
 
         if (submenuToActive) {
             if (submenuToActive.classList.contains("submenu-active")) {
                 submenuToActive.classList.remove("submenu-active");
+                liParent.classList.remove('activeLi')
                 liItems.forEach((liItems) => {
                     liItems.classList.remove("disable");
                 });
             } else {
                 submenuToActive.classList.add("submenu-active");
+                
+                liParent.classList.add('activeLi')
                 liItems.forEach((liItems) => {
                     let testSubmenu = liItems.querySelector(".submenu");
                     if (testSubmenu) {
@@ -85,6 +89,8 @@ function hoverElement(element) {
                     } else {
                         setDefaultBackground();
                     }
+                } else {
+                    setDefaultBackground();
                 }
             }
             // setDefaultBackground();
