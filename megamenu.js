@@ -45,13 +45,16 @@ function controllMegamenuUI() {
         if (submenuToActive) {
             if (submenuToActive.classList.contains("submenu-active")) {
                 submenuToActive.classList.remove("submenu-active");
+                submenuToActive.style.pointerEvents = 'none'
                 liParent.classList.remove('activeLi')
                 liItems.forEach((liItems) => {
                     liItems.classList.remove("disable");
+                    liItems.classList.add("enable");
                 });
             } else {
                 submenuToActive.classList.add("submenu-active");
-                
+
+                // DISABLE OTHERS LIs
                 liParent.classList.add('activeLi')
                 liItems.forEach((liItems) => {
                     let testSubmenu = liItems.querySelector(".submenu");
@@ -59,9 +62,11 @@ function controllMegamenuUI() {
                         if (testSubmenu.classList.contains("submenu-active")) {
                         } else {
                             liItems.classList.add("disable");
+                            liItems.classList.remove("enable");
                         }
                     } else {
                         liItems.classList.add("disable");
+                        liItems.classList.remove("enable");
                     }
                 });
             }
