@@ -33,51 +33,60 @@ function controllMegamenuUI() {
     // VARIABLES
     const categories = document.getElementById("categories");
     const liItems = categories.querySelectorAll(".categoryItem");
-
+    
     // OPEN SUBMENU
+    liItems.forEach(liItems =>{
+        liItems.addEventListener('click', openSubmenu)
+    })
 
-    categories.addEventListener("click", function (event) {
-        // // event.stopPropagation;
-        let clickedItem = event.target;
-        let submenuToActive = clickedItem.parentNode.querySelector(".submenu");
-        let liParent = submenuToActive.parentNode;
+  
 
-        if (submenuToActive) {
-            if (submenuToActive.classList.contains("submenu-active")) {
-                submenuToActive.classList.remove("submenu-active");
-                submenuToActive.style.pointerEvents = 'none'
-                liParent.classList.remove('activeLi')
-                liItems.forEach((liItems) => {
-                    liItems.classList.remove("disable");
-                    liItems.classList.add("enable");
-                });
-            } else {
-                submenuToActive.classList.add("submenu-active");
-
-                // DISABLE OTHERS LIs
-                liParent.classList.add('activeLi')
-                liItems.forEach((liItems) => {
-                    let testSubmenu = liItems.querySelector(".submenu");
-                    if (testSubmenu) {
-                        if (testSubmenu.classList.contains("submenu-active")) {
-                        } else {
-                            liItems.classList.add("disable");
-                            liItems.classList.remove("enable");
-                        }
-                    } else {
-                        liItems.classList.add("disable");
-                        liItems.classList.remove("enable");
-                    }
-                });
-            }
-        } else {
-            // fallback
-        }
-    });
     //DEFAULT CONTROL ->
     setDefaultBackground();
 }
 
+
+function openSubmenu(event){
+     // event.stopPropagation;
+     let clickedItem = event.target;
+     console.log(clickedItem)
+     let submenuToActive = clickedItem.parentNode.querySelector(".submenu");
+     let liParent = submenuToActive.parentNode;
+     const categories = document.getElementById("categories");
+     const liItems = categories.querySelectorAll(".categoryItem");
+
+     if (submenuToActive) {
+         if (submenuToActive.classList.contains("submenu-active")) {
+             submenuToActive.classList.remove("submenu-active");
+             submenuToActive.style.pointerEvents = 'none'
+             liParent.classList.remove('activeLi')
+             liItems.forEach((liItems) => {
+                 liItems.classList.remove("disable");
+                 liItems.classList.add("enable");
+             });
+         } else {
+             submenuToActive.classList.add("submenu-active");
+
+             // DISABLE OTHERS LIs
+             liParent.classList.add('activeLi')
+             liItems.forEach((liItems) => {
+                 let testSubmenu = liItems.querySelector(".submenu");
+                 if (testSubmenu) {
+                     if (testSubmenu.classList.contains("submenu-active")) {
+                     } else {
+                         liItems.classList.add("disable");
+                         liItems.classList.remove("enable");
+                     }
+                 } else {
+                     liItems.classList.add("disable");
+                     liItems.classList.remove("enable");
+                 }
+             });
+         }
+     } else {
+         // fallback
+     }
+}
 function hoverElement(element) {
     element.onmouseover = element.onmouseout = hoverListItems;
 
