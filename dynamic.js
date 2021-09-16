@@ -28,7 +28,7 @@ async function createDynamicMegamenu() {
 
         menuContentCategories.reverse().forEach(async (menuContentCategories, index) => {
             let listCategory = document.createElement("li");
-            listCategory.className = "categoryItem enable";
+            listCategory.className = "category-item enable";
             listCategory.setAttribute(
                 "id",
                 menuContentCategories.categoryMegaMenuId
@@ -41,6 +41,7 @@ async function createDynamicMegamenu() {
                 "src",
                 "https://devscripta.com.br/wp-content/uploads/2021/09/nav-icon.svg"
             );
+            categoryNavIcon.classList.add('category-nav-icon')
             categoryNavIcon.setAttribute("loading", "lazy");
 
             let categoryLink = document.createElement("a");
