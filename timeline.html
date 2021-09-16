@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Megamenu1/megamenu.css">
+    <title>Document</title>
+
+    <style>
+        :root {
+            --e-global-color-primary: #D8A3CD;
+            --e-global-color-secondary: #DDA309;
+            --e-global-color-text: #515151;
+            --e-global-color-accent: #D088B1;
+            --e-global-color-480306d: #F8EBEC;
+            --e-global-color-fa39baf: #D8A3CD;
+            --e-global-color-5c24791: #333333;
+            --e-global-color-d0a19b1: #FBFBFB;
+            --e-global-color-a3d2afd: #FFFFFF;
+            --e-global-color-ebb5f1b: #8A9EB5;
+            --e-global-color-8e8a8a2: #BDBDBD;
+            --e-global-color-e7ed2e8: #4F4F4F;
+            --e-global-typography-primary-font-family: "Graphit";
+            --e-global-typography-primary-font-size: 7.5rem;
+            --e-global-typography-primary-font-weight: bold;
+            --e-global-typography-secondary-font-family: "Open Sans";
+            --e-global-typography-secondary-font-size: 7rem;
+            --e-global-typography-secondary-font-weight: 400;
+            --e-global-typography-text-font-family: "Open Sans";
+            --e-global-typography-text-font-weight: 400;
+            --e-global-typography-accent-font-family: "Open Sans";
+            --e-global-typography-accent-font-weight: 500;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+            background: var(--e-global-color-d0a19b1);
+        }
+
+        html {
+            font-size: 10px;
+            font-family: Open Sans;
+        }
+
+        :root {
+            font-size: 10px;
+        }
+
+        h1,
+        h2 {
+            color: black;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+            font-weight: 800;
+        }
+
+        .anything {
+            width: 50vw;
+            max-width: 1080px;
+            height: 50px;
+            background: #fbbb33;
+
+            margin: 0 auto;
+        }
+
+        .anything:nth-child(2){
+            background-color: blue;
+        }
+
+        #timeline {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 100vw;
+
+            cursor: grab;
+        }
+
+        #timeline:active {
+            cursor: grabbing;
+        }
+
+        #timeline::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+
+            width: 24vw;
+            max-width: 500px;
+            height: 100%;
+
+            background-color: none;
+            background: rgb(251, 251, 251);
+            background: -moz-linear-gradient(90deg, rgba(251, 251, 251, 0) 0%, (var--e-global-color-d0a19b1) 90%);
+            background: -webkit-linear-gradient(90deg, rgba(251, 251, 251, 0) 0%, var(--e-global-color-d0a19b1) 90%);
+            background: linear-gradient(90deg, rgba(251, 251, 251, 0) 0%, var(--e-global-color-d0a19b1) 90%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fbfbfb", endColorstr="#fbfbfb", GradientType=1);
+
+            /* background-color: var( --e-global-color-d0a19b1); */
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        #timeline .line-element {
+            position: absolute;
+            top: 37px;
+            width: 100vw;
+            height: 2px;
+            background-color: #C4C4C4;
+            z-index: 0;
+        }
+
+
+        #section-wrapper-timeline {
+            display: flex;
+
+            max-width: 1320px;
+            position: relative;
+            padding-left: 8rem;
+            /* padding: 12rem; */
+        }
+
+        #timeline-wrapper {
+            position: relative;
+            left: 0;
+            /* transform: translateX(-20%); */
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            width: 100vw;
+            /* max-width: 1080px; */
+            font-size: 2rem;
+
+            padding-left: 4rem;
+            overflow-x: scroll;
+            z-index: 2;
+        }
+
+        #scroll img {
+            position: absolute;
+            bottom: 0;
+
+            transform: translate(-90%, 0%);
+            z-index: 3;
+        }
+
+        #timeline-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        #scroll::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 8rem;
+            transform: translateY(-50%);
+
+            width: 5rem;
+            height: 100%;
+
+            /* background-color: red; */
+            background: -moz-linear-gradient(270deg, rgba(251, 251, 251, 0) 0%, (var--e-global-color-d0a19b1) 90%);
+            background: -webkit-linear-gradient(270deg, rgba(251, 251, 251, 0) 0%, var(--e-global-color-d0a19b1) 90%);
+            background: linear-gradient(270deg, rgba(251, 251, 251, 0) 0%, var(--e-global-color-d0a19b1) 90%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fbfbfb", endColorstr="#fbfbfb", GradientType=1);
+            z-index: 3;
+            pointer-events: none;
+
+        }
+
+        .wrapper-timeline-item {
+            display: flex;
+            flex-direction: column;
+
+            width: 356px;
+            min-width: 320px;
+
+            /* margin-top: -40px; */
+            margin-right: 64px;
+        }
+
+        .wrapper-timeline-item:last-child {
+            margin-right: 35vw;
+        }
+
+        .wrapper-timeline-item .year-timeline {
+            margin-top: 16px;
+
+            color: #D088B1;
+            /* color: var(--e-global-color-accent); */
+            font-weight: 700;
+        }
+
+        .wrapper-timeline-item .title-timeline {
+            color: #333333;
+            color: var(--e-global-color-5c24791);
+            font-weight: 700;
+        }
+
+
+        @media(max-width: 767px){
+
+            #section-wrapper-timeline{
+                padding-left: 0;
+            }
+
+            #scroll img{
+                display: none;
+            }
+
+            #scroll::before{
+                left: 0;
+                max-width: 80px;
+            }
+
+            #timeline::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                width: 24vw;
+                max-width: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="btn1"class="anything">
+        sayug
+    </div>
+    <div id="btn2"class="anything">
+        sayug
+    </div>
+    <div id="timeline">
+        <div id="section-wrapper-timeline">
+            <div id="scroll">
+                <img src="./icon/ilustrattion-doc-timeline.svg" alt="">
+                <div class="line-element">
+                </div>
+                <div id="timeline-wrapper">
+                    <div class="wrapper-timeline-item">
+                        <svg width="30" height="45" viewBox="0 0 30 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6.44231" cy="38.1068" rx="6.44231" ry="6.50309" fill="#D088B1" />
+                            <path
+                                d="M28.7994 1.36553C27.226 0.446685 25.5485 0 23.6712 0C21.4252 0 19.2204 0.643693 17.0883 1.2662C15.0054 1.87432 13.038 2.44871 11.0907 2.44884C11.0904 2.44884 11.0902 2.44884 11.0899 2.44884C9.788 2.44884 8.60916 2.18062 7.50309 1.63164V0.989992C7.50309 0.443253 7.04767 0 6.48592 0C5.92417 0 5.46875 0.443253 5.46875 0.989992V2.21435V15.6714V32.8017C5.46875 33.3485 5.92417 33.7917 6.48592 33.7917C7.04767 33.7917 7.50309 33.3485 7.50309 32.8017V17.2558C8.62652 17.6782 9.81221 17.8859 11.0907 17.8859C13.3367 17.8859 15.5413 17.2422 17.6732 16.6197C19.7563 16.0115 21.7238 15.437 23.6712 15.437C25.1693 15.437 26.5043 15.7914 27.7527 16.5204C28.0668 16.7039 28.4582 16.7088 28.7772 16.533C29.0961 16.3572 29.2931 16.0282 29.2931 15.6715V2.21441C29.2932 1.86666 29.1058 1.54439 28.7994 1.36553ZM17.0888 14.7232C15.0057 15.3314 13.0381 15.9059 11.0908 15.9059C9.78841 15.9059 8.6093 15.6381 7.50316 15.0891V3.79933C8.62639 4.22166 9.81187 4.42889 11.09 4.42883C11.0902 4.42883 11.0907 4.42883 11.0909 4.42883C13.3367 4.4287 15.5411 3.78507 17.6729 3.16263C19.756 2.55444 21.7238 1.97998 23.6712 1.97998C24.9736 1.97998 26.1527 2.24781 27.2588 2.79673V14.0866C26.1354 13.6642 24.9497 13.457 23.6712 13.457C21.4253 13.457 19.2207 14.1007 17.0888 14.7232Z"
+                                fill="#D088B1" />
+                        </svg>
+                        <div class="year-timeline">
+                            1999
+                        </div>
+                        <div class="title-timeline">
+                            Formaçao lorem ipsum
+                        </div>
+                        <span>
+                            Quisque diam leo, varius id rutrum id, convallis eu nunc. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Sed vel leo efficitur, sagittis nisl vel, tempus nisi.
+                        </span>
+                    </div>
+                    <div class="wrapper-timeline-item">
+                        <svg width="30" height="45" viewBox="0 0 30 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6.44231" cy="38.1068" rx="6.44231" ry="6.50309" fill="#D088B1" />
+                            <path
+                                d="M28.7994 1.36553C27.226 0.446685 25.5485 0 23.6712 0C21.4252 0 19.2204 0.643693 17.0883 1.2662C15.0054 1.87432 13.038 2.44871 11.0907 2.44884C11.0904 2.44884 11.0902 2.44884 11.0899 2.44884C9.788 2.44884 8.60916 2.18062 7.50309 1.63164V0.989992C7.50309 0.443253 7.04767 0 6.48592 0C5.92417 0 5.46875 0.443253 5.46875 0.989992V2.21435V15.6714V32.8017C5.46875 33.3485 5.92417 33.7917 6.48592 33.7917C7.04767 33.7917 7.50309 33.3485 7.50309 32.8017V17.2558C8.62652 17.6782 9.81221 17.8859 11.0907 17.8859C13.3367 17.8859 15.5413 17.2422 17.6732 16.6197C19.7563 16.0115 21.7238 15.437 23.6712 15.437C25.1693 15.437 26.5043 15.7914 27.7527 16.5204C28.0668 16.7039 28.4582 16.7088 28.7772 16.533C29.0961 16.3572 29.2931 16.0282 29.2931 15.6715V2.21441C29.2932 1.86666 29.1058 1.54439 28.7994 1.36553ZM17.0888 14.7232C15.0057 15.3314 13.0381 15.9059 11.0908 15.9059C9.78841 15.9059 8.6093 15.6381 7.50316 15.0891V3.79933C8.62639 4.22166 9.81187 4.42889 11.09 4.42883C11.0902 4.42883 11.0907 4.42883 11.0909 4.42883C13.3367 4.4287 15.5411 3.78507 17.6729 3.16263C19.756 2.55444 21.7238 1.97998 23.6712 1.97998C24.9736 1.97998 26.1527 2.24781 27.2588 2.79673V14.0866C26.1354 13.6642 24.9497 13.457 23.6712 13.457C21.4253 13.457 19.2207 14.1007 17.0888 14.7232Z"
+                                fill="#D088B1" />
+                        </svg>
+                        <div class="year-timeline">
+                            1999
+                        </div>
+                        <div class="title-timeline">
+                            Formaçao lorem ipsum
+                        </div>
+                        <span>
+                            Quisque diam leo, varius id rutrum id, convallis eu nunc. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Sed vel leo efficitur, sagittis nisl vel, tempus nisi.
+                        </span>
+                    </div>
+                    <div class="wrapper-timeline-item">
+                        <svg width="30" height="45" viewBox="0 0 30 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6.44231" cy="38.1068" rx="6.44231" ry="6.50309" fill="#D088B1" />
+                            <path
+                                d="M28.7994 1.36553C27.226 0.446685 25.5485 0 23.6712 0C21.4252 0 19.2204 0.643693 17.0883 1.2662C15.0054 1.87432 13.038 2.44871 11.0907 2.44884C11.0904 2.44884 11.0902 2.44884 11.0899 2.44884C9.788 2.44884 8.60916 2.18062 7.50309 1.63164V0.989992C7.50309 0.443253 7.04767 0 6.48592 0C5.92417 0 5.46875 0.443253 5.46875 0.989992V2.21435V15.6714V32.8017C5.46875 33.3485 5.92417 33.7917 6.48592 33.7917C7.04767 33.7917 7.50309 33.3485 7.50309 32.8017V17.2558C8.62652 17.6782 9.81221 17.8859 11.0907 17.8859C13.3367 17.8859 15.5413 17.2422 17.6732 16.6197C19.7563 16.0115 21.7238 15.437 23.6712 15.437C25.1693 15.437 26.5043 15.7914 27.7527 16.5204C28.0668 16.7039 28.4582 16.7088 28.7772 16.533C29.0961 16.3572 29.2931 16.0282 29.2931 15.6715V2.21441C29.2932 1.86666 29.1058 1.54439 28.7994 1.36553ZM17.0888 14.7232C15.0057 15.3314 13.0381 15.9059 11.0908 15.9059C9.78841 15.9059 8.6093 15.6381 7.50316 15.0891V3.79933C8.62639 4.22166 9.81187 4.42889 11.09 4.42883C11.0902 4.42883 11.0907 4.42883 11.0909 4.42883C13.3367 4.4287 15.5411 3.78507 17.6729 3.16263C19.756 2.55444 21.7238 1.97998 23.6712 1.97998C24.9736 1.97998 26.1527 2.24781 27.2588 2.79673V14.0866C26.1354 13.6642 24.9497 13.457 23.6712 13.457C21.4253 13.457 19.2207 14.1007 17.0888 14.7232Z"
+                                fill="#D088B1" />
+                        </svg>
+                        <div class="year-timeline">
+                            1999
+                        </div>
+                        <div class="title-timeline">
+                            Formaçao lorem ipsum
+                        </div>
+                        <span>
+                            Quisque diam leo, varius id rutrum id, convallis eu nunc. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Sed vel leo efficitur, sagittis nisl vel, tempus nisi.
+                        </span>
+                    </div>
+                    <div class="wrapper-timeline-item">
+                        <svg width="30" height="45" viewBox="0 0 30 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6.44231" cy="38.1068" rx="6.44231" ry="6.50309" fill="#D088B1" />
+                            <path
+                                d="M28.7994 1.36553C27.226 0.446685 25.5485 0 23.6712 0C21.4252 0 19.2204 0.643693 17.0883 1.2662C15.0054 1.87432 13.038 2.44871 11.0907 2.44884C11.0904 2.44884 11.0902 2.44884 11.0899 2.44884C9.788 2.44884 8.60916 2.18062 7.50309 1.63164V0.989992C7.50309 0.443253 7.04767 0 6.48592 0C5.92417 0 5.46875 0.443253 5.46875 0.989992V2.21435V15.6714V32.8017C5.46875 33.3485 5.92417 33.7917 6.48592 33.7917C7.04767 33.7917 7.50309 33.3485 7.50309 32.8017V17.2558C8.62652 17.6782 9.81221 17.8859 11.0907 17.8859C13.3367 17.8859 15.5413 17.2422 17.6732 16.6197C19.7563 16.0115 21.7238 15.437 23.6712 15.437C25.1693 15.437 26.5043 15.7914 27.7527 16.5204C28.0668 16.7039 28.4582 16.7088 28.7772 16.533C29.0961 16.3572 29.2931 16.0282 29.2931 15.6715V2.21441C29.2932 1.86666 29.1058 1.54439 28.7994 1.36553ZM17.0888 14.7232C15.0057 15.3314 13.0381 15.9059 11.0908 15.9059C9.78841 15.9059 8.6093 15.6381 7.50316 15.0891V3.79933C8.62639 4.22166 9.81187 4.42889 11.09 4.42883C11.0902 4.42883 11.0907 4.42883 11.0909 4.42883C13.3367 4.4287 15.5411 3.78507 17.6729 3.16263C19.756 2.55444 21.7238 1.97998 23.6712 1.97998C24.9736 1.97998 26.1527 2.24781 27.2588 2.79673V14.0866C26.1354 13.6642 24.9497 13.457 23.6712 13.457C21.4253 13.457 19.2207 14.1007 17.0888 14.7232Z"
+                                fill="#D088B1" />
+                        </svg>
+                        <div class="year-timeline">
+                            1999
+                        </div>
+                        <div class="title-timeline">
+                            Formaçao lorem ipsum
+                        </div>
+                        <span>
+                            Quisque diam leo, varius id rutrum id, convallis eu nunc. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Sed vel leo efficitur, sagittis nisl vel, tempus nisi.
+                        </span>
+                    </div>
+                    <div class="wrapper-timeline-item">
+                        <svg width="30" height="45" viewBox="0 0 30 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6.44231" cy="38.1068" rx="6.44231" ry="6.50309" fill="#D088B1" />
+                            <path
+                                d="M28.7994 1.36553C27.226 0.446685 25.5485 0 23.6712 0C21.4252 0 19.2204 0.643693 17.0883 1.2662C15.0054 1.87432 13.038 2.44871 11.0907 2.44884C11.0904 2.44884 11.0902 2.44884 11.0899 2.44884C9.788 2.44884 8.60916 2.18062 7.50309 1.63164V0.989992C7.50309 0.443253 7.04767 0 6.48592 0C5.92417 0 5.46875 0.443253 5.46875 0.989992V2.21435V15.6714V32.8017C5.46875 33.3485 5.92417 33.7917 6.48592 33.7917C7.04767 33.7917 7.50309 33.3485 7.50309 32.8017V17.2558C8.62652 17.6782 9.81221 17.8859 11.0907 17.8859C13.3367 17.8859 15.5413 17.2422 17.6732 16.6197C19.7563 16.0115 21.7238 15.437 23.6712 15.437C25.1693 15.437 26.5043 15.7914 27.7527 16.5204C28.0668 16.7039 28.4582 16.7088 28.7772 16.533C29.0961 16.3572 29.2931 16.0282 29.2931 15.6715V2.21441C29.2932 1.86666 29.1058 1.54439 28.7994 1.36553ZM17.0888 14.7232C15.0057 15.3314 13.0381 15.9059 11.0908 15.9059C9.78841 15.9059 8.6093 15.6381 7.50316 15.0891V3.79933C8.62639 4.22166 9.81187 4.42889 11.09 4.42883C11.0902 4.42883 11.0907 4.42883 11.0909 4.42883C13.3367 4.4287 15.5411 3.78507 17.6729 3.16263C19.756 2.55444 21.7238 1.97998 23.6712 1.97998C24.9736 1.97998 26.1527 2.24781 27.2588 2.79673V14.0866C26.1354 13.6642 24.9497 13.457 23.6712 13.457C21.4253 13.457 19.2207 14.1007 17.0888 14.7232Z"
+                                fill="#D088B1" />
+                        </svg>
+                        <div class="year-timeline">
+                            1999
+                        </div>
+                        <div class="title-timeline">
+                            Formaçao lorem ipsum
+                        </div>
+                        <span>
+                            Quisque diam leo, varius id rutrum id, convallis eu nunc. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Sed vel leo efficitur, sagittis nisl vel, tempus nisi.
+                        </span>
+                    </div>
+                    <div class="wrapper-timeline-item">
+                        <svg width="30" height="45" viewBox="0 0 30 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6.44231" cy="38.1068" rx="6.44231" ry="6.50309" fill="#D088B1" />
+                            <path
+                                d="M28.7994 1.36553C27.226 0.446685 25.5485 0 23.6712 0C21.4252 0 19.2204 0.643693 17.0883 1.2662C15.0054 1.87432 13.038 2.44871 11.0907 2.44884C11.0904 2.44884 11.0902 2.44884 11.0899 2.44884C9.788 2.44884 8.60916 2.18062 7.50309 1.63164V0.989992C7.50309 0.443253 7.04767 0 6.48592 0C5.92417 0 5.46875 0.443253 5.46875 0.989992V2.21435V15.6714V32.8017C5.46875 33.3485 5.92417 33.7917 6.48592 33.7917C7.04767 33.7917 7.50309 33.3485 7.50309 32.8017V17.2558C8.62652 17.6782 9.81221 17.8859 11.0907 17.8859C13.3367 17.8859 15.5413 17.2422 17.6732 16.6197C19.7563 16.0115 21.7238 15.437 23.6712 15.437C25.1693 15.437 26.5043 15.7914 27.7527 16.5204C28.0668 16.7039 28.4582 16.7088 28.7772 16.533C29.0961 16.3572 29.2931 16.0282 29.2931 15.6715V2.21441C29.2932 1.86666 29.1058 1.54439 28.7994 1.36553ZM17.0888 14.7232C15.0057 15.3314 13.0381 15.9059 11.0908 15.9059C9.78841 15.9059 8.6093 15.6381 7.50316 15.0891V3.79933C8.62639 4.22166 9.81187 4.42889 11.09 4.42883C11.0902 4.42883 11.0907 4.42883 11.0909 4.42883C13.3367 4.4287 15.5411 3.78507 17.6729 3.16263C19.756 2.55444 21.7238 1.97998 23.6712 1.97998C24.9736 1.97998 26.1527 2.24781 27.2588 2.79673V14.0866C26.1354 13.6642 24.9497 13.457 23.6712 13.457C21.4253 13.457 19.2207 14.1007 17.0888 14.7232Z"
+                                fill="#D088B1" />
+                        </svg>
+                        <div class="year-timeline">
+                            1999
+                        </div>
+                        <div class="title-timeline">
+                            Formaçao lorem ipsum
+                        </div>
+                        <span>
+                            Quisque diam leo, varius id rutrum id, convallis eu nunc. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Sed vel leo efficitur, sagittis nisl vel, tempus nisi.
+                        </span>
+                    </div>
+                    <div class="wrapper-timeline-item">
+                        <svg width="30" height="45" viewBox="0 0 30 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6.44231" cy="38.1068" rx="6.44231" ry="6.50309" fill="#D088B1" />
+                            <path
+                                d="M28.7994 1.36553C27.226 0.446685 25.5485 0 23.6712 0C21.4252 0 19.2204 0.643693 17.0883 1.2662C15.0054 1.87432 13.038 2.44871 11.0907 2.44884C11.0904 2.44884 11.0902 2.44884 11.0899 2.44884C9.788 2.44884 8.60916 2.18062 7.50309 1.63164V0.989992C7.50309 0.443253 7.04767 0 6.48592 0C5.92417 0 5.46875 0.443253 5.46875 0.989992V2.21435V15.6714V32.8017C5.46875 33.3485 5.92417 33.7917 6.48592 33.7917C7.04767 33.7917 7.50309 33.3485 7.50309 32.8017V17.2558C8.62652 17.6782 9.81221 17.8859 11.0907 17.8859C13.3367 17.8859 15.5413 17.2422 17.6732 16.6197C19.7563 16.0115 21.7238 15.437 23.6712 15.437C25.1693 15.437 26.5043 15.7914 27.7527 16.5204C28.0668 16.7039 28.4582 16.7088 28.7772 16.533C29.0961 16.3572 29.2931 16.0282 29.2931 15.6715V2.21441C29.2932 1.86666 29.1058 1.54439 28.7994 1.36553ZM17.0888 14.7232C15.0057 15.3314 13.0381 15.9059 11.0908 15.9059C9.78841 15.9059 8.6093 15.6381 7.50316 15.0891V3.79933C8.62639 4.22166 9.81187 4.42889 11.09 4.42883C11.0902 4.42883 11.0907 4.42883 11.0909 4.42883C13.3367 4.4287 15.5411 3.78507 17.6729 3.16263C19.756 2.55444 21.7238 1.97998 23.6712 1.97998C24.9736 1.97998 26.1527 2.24781 27.2588 2.79673V14.0866C26.1354 13.6642 24.9497 13.457 23.6712 13.457C21.4253 13.457 19.2207 14.1007 17.0888 14.7232Z"
+                                fill="#D088B1" />
+                        </svg>
+                        <div class="year-timeline">
+                            1999
+                        </div>
+                        <div class="title-timeline">
+                            Formaçao lorem ipsum
+                        </div>
+                        <span>
+                            Quisque diam leo, varius id rutrum id, convallis eu nunc. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Sed vel leo efficitur, sagittis nisl vel, tempus nisi.
+                        </span>
+                    </div>
+                    <div class="wrapper-timeline-item">
+                        <svg width="30" height="45" viewBox="0 0 30 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6.44231" cy="38.1068" rx="6.44231" ry="6.50309" fill="#D088B1" />
+                            <path
+                                d="M28.7994 1.36553C27.226 0.446685 25.5485 0 23.6712 0C21.4252 0 19.2204 0.643693 17.0883 1.2662C15.0054 1.87432 13.038 2.44871 11.0907 2.44884C11.0904 2.44884 11.0902 2.44884 11.0899 2.44884C9.788 2.44884 8.60916 2.18062 7.50309 1.63164V0.989992C7.50309 0.443253 7.04767 0 6.48592 0C5.92417 0 5.46875 0.443253 5.46875 0.989992V2.21435V15.6714V32.8017C5.46875 33.3485 5.92417 33.7917 6.48592 33.7917C7.04767 33.7917 7.50309 33.3485 7.50309 32.8017V17.2558C8.62652 17.6782 9.81221 17.8859 11.0907 17.8859C13.3367 17.8859 15.5413 17.2422 17.6732 16.6197C19.7563 16.0115 21.7238 15.437 23.6712 15.437C25.1693 15.437 26.5043 15.7914 27.7527 16.5204C28.0668 16.7039 28.4582 16.7088 28.7772 16.533C29.0961 16.3572 29.2931 16.0282 29.2931 15.6715V2.21441C29.2932 1.86666 29.1058 1.54439 28.7994 1.36553ZM17.0888 14.7232C15.0057 15.3314 13.0381 15.9059 11.0908 15.9059C9.78841 15.9059 8.6093 15.6381 7.50316 15.0891V3.79933C8.62639 4.22166 9.81187 4.42889 11.09 4.42883C11.0902 4.42883 11.0907 4.42883 11.0909 4.42883C13.3367 4.4287 15.5411 3.78507 17.6729 3.16263C19.756 2.55444 21.7238 1.97998 23.6712 1.97998C24.9736 1.97998 26.1527 2.24781 27.2588 2.79673V14.0866C26.1354 13.6642 24.9497 13.457 23.6712 13.457C21.4253 13.457 19.2207 14.1007 17.0888 14.7232Z"
+                                fill="#D088B1" />
+                        </svg>
+                        <div class="year-timeline">
+                            1999
+                        </div>
+                        <div class="title-timeline">
+                            Formaçao lorem ipsum
+                        </div>
+                        <span>
+                            Quisque diam leo, varius id rutrum id, convallis eu nunc. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Sed vel leo efficitur, sagittis nisl vel, tempus nisi.
+                        </span>
+                    </div>
+                    <div class="wrapper-timeline-item">
+                        <svg width="30" height="45" viewBox="0 0 30 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6.44231" cy="38.1068" rx="6.44231" ry="6.50309" fill="#D088B1" />
+                            <path
+                                d="M28.7994 1.36553C27.226 0.446685 25.5485 0 23.6712 0C21.4252 0 19.2204 0.643693 17.0883 1.2662C15.0054 1.87432 13.038 2.44871 11.0907 2.44884C11.0904 2.44884 11.0902 2.44884 11.0899 2.44884C9.788 2.44884 8.60916 2.18062 7.50309 1.63164V0.989992C7.50309 0.443253 7.04767 0 6.48592 0C5.92417 0 5.46875 0.443253 5.46875 0.989992V2.21435V15.6714V32.8017C5.46875 33.3485 5.92417 33.7917 6.48592 33.7917C7.04767 33.7917 7.50309 33.3485 7.50309 32.8017V17.2558C8.62652 17.6782 9.81221 17.8859 11.0907 17.8859C13.3367 17.8859 15.5413 17.2422 17.6732 16.6197C19.7563 16.0115 21.7238 15.437 23.6712 15.437C25.1693 15.437 26.5043 15.7914 27.7527 16.5204C28.0668 16.7039 28.4582 16.7088 28.7772 16.533C29.0961 16.3572 29.2931 16.0282 29.2931 15.6715V2.21441C29.2932 1.86666 29.1058 1.54439 28.7994 1.36553ZM17.0888 14.7232C15.0057 15.3314 13.0381 15.9059 11.0908 15.9059C9.78841 15.9059 8.6093 15.6381 7.50316 15.0891V3.79933C8.62639 4.22166 9.81187 4.42889 11.09 4.42883C11.0902 4.42883 11.0907 4.42883 11.0909 4.42883C13.3367 4.4287 15.5411 3.78507 17.6729 3.16263C19.756 2.55444 21.7238 1.97998 23.6712 1.97998C24.9736 1.97998 26.1527 2.24781 27.2588 2.79673V14.0866C26.1354 13.6642 24.9497 13.457 23.6712 13.457C21.4253 13.457 19.2207 14.1007 17.0888 14.7232Z"
+                                fill="#D088B1" />
+                        </svg>
+                        <div class="year-timeline">
+                            1999
+                        </div>
+                        <div class="title-timeline">
+                            Formaçao lorem ipsum
+                        </div>
+                        <span>
+                            Quisque diam leo, varius id rutrum id, convallis eu nunc. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Sed vel leo efficitur, sagittis nisl vel, tempus nisi.
+                        </span>
+                    </div>
+                    <div class="wrapper-timeline-item">
+                        <svg width="30" height="45" viewBox="0 0 30 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="6.44231" cy="38.1068" rx="6.44231" ry="6.50309" fill="#D088B1" />
+                            <path
+                                d="M28.7994 1.36553C27.226 0.446685 25.5485 0 23.6712 0C21.4252 0 19.2204 0.643693 17.0883 1.2662C15.0054 1.87432 13.038 2.44871 11.0907 2.44884C11.0904 2.44884 11.0902 2.44884 11.0899 2.44884C9.788 2.44884 8.60916 2.18062 7.50309 1.63164V0.989992C7.50309 0.443253 7.04767 0 6.48592 0C5.92417 0 5.46875 0.443253 5.46875 0.989992V2.21435V15.6714V32.8017C5.46875 33.3485 5.92417 33.7917 6.48592 33.7917C7.04767 33.7917 7.50309 33.3485 7.50309 32.8017V17.2558C8.62652 17.6782 9.81221 17.8859 11.0907 17.8859C13.3367 17.8859 15.5413 17.2422 17.6732 16.6197C19.7563 16.0115 21.7238 15.437 23.6712 15.437C25.1693 15.437 26.5043 15.7914 27.7527 16.5204C28.0668 16.7039 28.4582 16.7088 28.7772 16.533C29.0961 16.3572 29.2931 16.0282 29.2931 15.6715V2.21441C29.2932 1.86666 29.1058 1.54439 28.7994 1.36553ZM17.0888 14.7232C15.0057 15.3314 13.0381 15.9059 11.0908 15.9059C9.78841 15.9059 8.6093 15.6381 7.50316 15.0891V3.79933C8.62639 4.22166 9.81187 4.42889 11.09 4.42883C11.0902 4.42883 11.0907 4.42883 11.0909 4.42883C13.3367 4.4287 15.5411 3.78507 17.6729 3.16263C19.756 2.55444 21.7238 1.97998 23.6712 1.97998C24.9736 1.97998 26.1527 2.24781 27.2588 2.79673V14.0866C26.1354 13.6642 24.9497 13.457 23.6712 13.457C21.4253 13.457 19.2207 14.1007 17.0888 14.7232Z"
+                                fill="#D088B1" />
+                        </svg>
+                        <div class="year-timeline">
+                            1999
+                        </div>
+                        <div class="title-timeline">
+                            Formaçao lorem ipsum
+                        </div>
+                        <span>
+                            Quisque diam leo, varius id rutrum id, convallis eu nunc. Lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit. Sed vel leo efficitur, sagittis nisl vel, tempus nisi.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            
+
+            const timelineWrapper = document.getElementById('timeline-wrapper')
+            const cards = document.querySelectorAll('.wrapper-timeline-item') 
+            var isDown = false;
+            var startX;
+            var scrollLeft;
+            var scrollMax = timelineWrapper.scrollWidth - timelineWrapper.offsetWidth
+            var scrollAmount = 0
+            var scrollMin = 0
+            var scrollPerCard = Math.floor(Math.floor(scrollMax) / cards.length) * 3.55
+
+            const buttonLeft = document.getElementById('btn1')
+            const buttonRight = document.getElementById('btn2')
+
+            buttonLeft.addEventListener('click', ()=>{
+                scrollAmount = timelineWrapper.scrollLeft
+                if (scrollAmount <= 0) {
+                    scrollAmount = 0
+                }else{
+                    scrollAmount -= scrollPerCard
+                }
+                timelineWrapper.scrollTo({
+                    top: 0,
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                })
+            })
+            
+            buttonRight.addEventListener('click', ()=>{
+                scrollAmount = timelineWrapper.scrollLeft
+                if(scrollAmount >= scrollMax){
+                    scrollAmount = scrollMax
+                }else{
+                    scrollAmount += scrollPerCard
+                }
+
+                timelineWrapper.scrollTo({
+                    top: 0,
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                })
+            })            
+
+            // GRAB FUNCTIONS
+            timelineWrapper.addEventListener("mousedown", (e) => {
+                isDown = true;
+                startX = e.pageX - timelineWrapper.offsetLeft;
+                scrollLeft = timelineWrapper.scrollLeft;
+            });
+            
+            timelineWrapper.addEventListener("mouseleave", () => {
+                isDown = false;
+            });
+
+            timelineWrapper.addEventListener("mouseup", () => {
+                isDown = false;
+                timelineWrapper.classList.remove("active-cards");
+            });
+
+            timelineWrapper.addEventListener("mousemove", (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - timelineWrapper.offsetLeft;
+                const walk = (x - startX) * 1; //scroll-fast
+                timelineWrapper.scrollLeft = scrollLeft - walk;
+            });
+
+        </script>
+</body>
+
+</html>

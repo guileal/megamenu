@@ -72,19 +72,25 @@ async function createDynamicMegamenu() {
                 let subMenu = document.createElement("div");
                 subMenu.className = "submenu";
                 subCategoryRequest.reverse().forEach((subCategoryRequest) => {
+
                     let subMenuWrappList = document.createElement("ul");
                     subMenu.appendChild(subMenuWrappList);
+
                     let titleSubMenu = document.createElement("div");
                     titleSubMenu.className = "title-item";
-                    titleSubMenu.innerHTML = subCategoryRequest.title.rendered;
                     subMenuWrappList.appendChild(titleSubMenu);
+                    
                     let imageTitle = document.createElement("img");
                     imageTitle.setAttribute(
                         "src",
                         subCategoryRequest.imagem_de_destaque.guid
-                    );
+                        );
                     imageTitle.setAttribute("loading", "lazy");
+
                     titleSubMenu.appendChild(imageTitle);
+                    
+                    titleSubMenu.append(subCategoryRequest.title.rendered);
+                    
                     let subItems = subCategoryRequest._subcategory_data;
                     subItems.reverse().forEach((subItems) => {
                         let valueLI = document.createElement("li");

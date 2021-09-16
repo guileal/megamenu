@@ -60,105 +60,46 @@ function controllMegamenuUI() {
 }
 
 
+function openSubmenu(event){
+     // event.stopPropagation;
+     let clickedItem = event.target;
+     console.log(clickedItem)
+     let submenuToActive = clickedItem.parentNode.querySelector(".submenu");
+     let liParent = submenuToActive.parentNode;
+     const categories = document.getElementById("categories");
+     const liItems = categories.querySelectorAll(".categoryItem");
 
+     if (submenuToActive) {
+         if (submenuToActive.classList.contains("submenu-active")) {
+             submenuToActive.classList.remove("submenu-active");
+            //  submenuToActive.style.pointerEvents = 'none'
+             liParent.classList.remove('activeLi')
+             liItems.forEach((liItems) => {
+                 liItems.classList.remove("disable");
+                 liItems.classList.add("enable");
+             });
+         } else {
+             submenuToActive.classList.add("submenu-active");
 
-
-function openSubmenu(event) {
-
-    // chamar a outra funcao
-    event.preventDefault();
-    if (!event.target.matches(".category-item")) {
-        return;
-    }
-
-    // navbuttons
-    // let btnPrevious = document.querySelector('.btn-previous')
-    // let btnNext = document.querySelector('.btn-next')
-
-    // UI
-    const backButton = document.getElementById('back-button')
-    let clickedItem = event.target;
-    const categoriesWrapper = document.querySelector("#categories");
-    const categoryItems = categoriesWrapper.querySelectorAll(".categoryItem");
-    const subMenus = categoriesWrapper.querySelectorAll(".submenu");
-
-    if (clickedItem.querySelector(".submenu")) {
-        let submenuToActive = clickedItem.querySelector(".submenu");
-        let liToActive = submenuToActive.parentNode;
-        if (submenuToActive.classList.contains("submenu-active")) {
-            backButton.classList.add('disable')
-            categoryItems.forEach((item) => {
-                item.classList.remove("disable");
-                item.classList.remove("activeLi");
-                item.classList.add("enable");
-            });
-            subMenus.forEach((item) => {
-                item.classList.remove("submenu-active");
-            });
-        } else {
-
-            backButton.classList.remove('disable')
-            //zerando por padrao todos os itens
-            categoryItems.forEach((item) => {
-                item.classList.remove("enable");
-                item.classList.remove("activeLi");
-                item.classList.add("disable");
-            });
-            subMenus.forEach((item) => {
-                item.classList.remove("submenu-active");
-            });
-
-            liToActive.classList.remove("disable");
-            liToActive.classList.add("enable");
-            liToActive.classList.add("activeLi");
-            submenuToActive.classList.add("submenu-active");
-
-        }
-
-        // scroll
-        // let scrollMax = submenuToActive.scrollWidth - submenuToActive.offsetWidth
-        // let scrollMin = 0
-        // let scrollAmount = 0
-        // let itemsCards = submenuToActive.querySelectorAll('ul')
-        // let scrollPerCard = Math.floor(Math.floor(scrollMax) / itemsCards.length)
-
-        // btnPrevious.addEventListener('click', ()=>{
-        //     console.log(`btnPrev`)
-        //     console.log(scrollMax)
-        //     console.log(scrollAmount)
-        //     console.log(submenuToActive.offsetWidth)
-        //     console.log(scrollPerCard)
-
-            
-        //     scrollAmount = submenuToActive.scrollLeft
-        //     if (scrollAmount <= 0) {
-        //         scrollAmount = 0
-        //     }else{
-        //         scrollAmount -= scrollPerCard
-        //     }
-        //     submenuToActive.scrollTo({
-        //         top: 0,
-        //         left: scrollAmount,
-        //         behavior: 'smooth'
-        //     })
-        // })
-        
-        // btnNext.addEventListener('click', ()=>{
-        //     console.log(`btnNext`)
-        //     scrollAmount = submenuToActive.scrollLeft
-        //     if(scrollAmount >= scrollMax){
-        //         scrollAmount = scrollMax
-        //     }else{
-        //         scrollAmount += scrollPerCard
-        //     }
-
-        //     submenuToActive.scrollTo({
-        //         top: 0,
-        //         left: scrollAmount,
-        //         behavior: 'smooth'
-        //     })
-        // })            
-    }
+             // DISABLE OTHERS LIs
+             liParent.classList.add('activeLi')
+             liItems.forEach((liItems) => {
+                 let testSubmenu = liItems.querySelector(".submenu");
+                 if (testSubmenu) {
+                     if (testSubmenu.classList.contains("submenu-active")) {
+                     } else {
+                         liItems.classList.add("disable");
+                         liItems.classList.remove("enable");
+                     }
+                 } else {
+                     liItems.classList.add("disable");
+                     liItems.classList.remove("enable");
+                 }
+             });
+         }
+     } else {
+         // fallback
+     }
 }
 
 function hoverElement(element) {
