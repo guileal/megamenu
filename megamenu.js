@@ -67,7 +67,7 @@ function openSubmenu(event){
      let submenuToActive = clickedItem.parentNode.querySelector(".submenu");
      let liParent = submenuToActive.parentNode;
      const categories = document.getElementById("categories");
-     const liItems = categories.querySelectorAll(".categoryItem");
+     const liItems = categories.querySelectorAll(".category-item");
 
      if (submenuToActive) {
          if (submenuToActive.classList.contains("submenu-active")) {
