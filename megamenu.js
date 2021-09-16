@@ -58,7 +58,7 @@ function openSubmenu(event){
      if (submenuToActive) {
          if (submenuToActive.classList.contains("submenu-active")) {
              submenuToActive.classList.remove("submenu-active");
-             submenuToActive.style.pointerEvents = 'none'
+            //  submenuToActive.style.pointerEvents = 'none'
              liParent.classList.remove('activeLi')
              liItems.forEach((liItems) => {
                  liItems.classList.remove("disable");
